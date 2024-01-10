@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labyrinthus</title>
+</head>
+
+<style>
+   body {
+    font-family: 'Arial', sans-serif;
+    background-color: #212121;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1, h3 {
+    text-align: center;
+    color: #f0c419;
+    animation: fadeInUp 1s ease-out;
+}
+
+p {
+    text-align: center;
+    max-width: 600px;
+    margin: 20px auto;
+    animation: fadeIn 1.5s ease-out;
+}
+
+a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #d9320c;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    animation: scaleIn 2s ease-out;
+}
+
+a:hover {
+    background-color: #45a049;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+</style>
+<body onload="readTexts()">
+    
+    <h1 id="welcomeTitle">Bem-Vindo ao Desafiante Mundo de Labyrinthus!</h1>
+    <p id="introText">Desenvolvido pelo Laboratory of Artificial Intelligence and Machine Aind da Universidade Federal de Pernambuco (Laima-UFPE).</p>
+
+
+    <h3 id="challengeTitle">O Labyrinthus é uma experiência única que desafia os limites da sorte e da mente de seus jogadores.</h3>
+    <p id="challengeText">Jogar o Labyrinthus é um ato de resistência e coragem. Prepare-se para ter sua ansiedade testada ao limite, desde seus primeiros passos nos intrincados corredores e passagens do Labyrinthus.
+        aqui, a jornada será certamente desafiadora e, nem por isso, menos divertida.<br><br>
+
+        No Labyrinthus, você poderá jogar contra o computador, contra outros jogadores e em dupla contra seus adversários. A cooperação poderá ser uma estratégia inteligente para vencer os desconhecidos caminhos do Labyrinthus.  Já dificultar a jornada de seus oponentes poderá ser muito divertido, mas como tudo na vida, poderá ter seus riscos também.
+        Sair do Labyrinthus não será apenas uma questão de sorte e habilidade, mas uma verdadeira prova de paciência, persistência e perspicácia.
+
+        <br><br>
+
+        Você está pronto para este desafio? Entre e descubra os segredos que se escondem nos caminhos do Labyrinthus.
+        <br><br>
+        </p>
+
+
+        <h3 id="skillsTitle">
+        Teste suas habilidades, desvende enigmas intricados e prove que você é capaz de superar os muitos obstáculos em seu percurso.
+        Labyrinthus espera por você.
+        </h3>
+        
+        <a href="pages/chaves.html" accesskey="1" onclick="navigateToChaves()">A aventura começa agora!</a>
+
+    <script>
+        // Variável global para controlar a reprodução de áudio
+        let isAudioPlaying = false;
+
+        // Função para ler os textos e falar em voz alta
+        function readTexts() {
+            const welcomeTitle = document.getElementById("welcomeTitle").innerText;
+            const introText = document.getElementById("introText").innerText;
+            const challengeTitle = document.getElementById("challengeTitle").innerText;
+            const challengeText = document.getElementById("challengeText").innerText;
+            const skillsTitle = document.getElementById("skillsTitle").innerText;
+
+            const utterance = new SpeechSynthesisUtterance();
+
+            // Concatenando os textos para leitura
+            const textToSpeak = `${welcomeTitle}. ${introText}. ${challengeTitle}. ${challengeText}. ${skillsTitle}`;
+
+            utterance.text = textToSpeak;
+            
+            // Definindo a velocidade da fala
+            utterance.rate = 1.8;
+
+            // Adicionando um evento para quando a fala terminar
+            utterance.onend = function () {
+                isAudioPlaying = false;
+            };
+
+            // Falando em voz alta
+            speechSynthesis.speak(utterance);
+
+            // Atualizando o estado da reprodução de áudio
+            isAudioPlaying = true;
+        }
+
+        // Função para redirecionar para pages/chaves.html
+        function navigateToChaves() {
+            window.location.href = "pages/chaves.html";
+        }
+
+        // Função para pausar ou retomar a reprodução de áudio
+        function toggleAudio() {
+            if (isAudioPlaying) {
+                // Pausa a reprodução de áudio
+                speechSynthesis.cancel();
+                isAudioPlaying = false;
+
+                // Redireciona para a página
+                navigateToChaves();
+            } else {
+                // Inicia a reprodução de áudio
+                readTexts();
+            }
+        }
+
+        // Adicionando evento de escuta de teclado
+        document.addEventListener("keydown", function(event) {
+            // Verificando se a tecla pressionada é Enter ou Espaço
+            if (event.key === "Enter" || event.key === " ") {
+                // Acionando a função toggleAudio()
+                toggleAudio();
+            }
+        });
+    </script>
+
+</body>
+</html>

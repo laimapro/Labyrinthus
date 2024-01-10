@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labyrinthus</title>
+</head>
+<style>
+        body {
+        font-family: 'Arial', sans-serif;
+        background-color: #212121; /* Cor de fundo escura para representar o ambiente do labirinto */
+        color: #ffffff; /* Cor do texto */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    h3 {
+        text-align: center;
+        color: #f0c419; /* Cor do título */
+        margin-bottom: 20px;
+    }
+
+    button {
+        background-image: url('../dado.gif'); 
+        background-size: cover;
+        width: 100px; /* Aumentei um pouco o tamanho do botão para ficar mais visível e parecer mais um dado */
+        height: 100px;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    button:hover {
+        transform: scale(1.1); /* Efeito de escala ao passar o mouse para dar uma sensação mais interativa */
+    }
+
+    .alerta-customizado {
+        padding: 10px;
+        background-color: #d7f7f8;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+        border-radius: 4px;
+        margin: 20px 0;
+        text-align: center;
+    }
+
+
+</style>
+
+<body onload="iniciarLeitura()">
+
+    <audio id="rollSound">
+        <source src="../som/roll.wav" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+
+    <audio id="naoEntra">
+        <source src="../som/parede.wav" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+
+
+    <h3>
+        Jogue o dado para testar a sua sorte.
+    </h3>
+
+
+    <button onclick="playSound()" accesskey="d" title="Dado"></button>
+    <p id="resultado" class="alerta-customizado"></p>
+
+    <script src="../js/entrada.js"></script>
+</body>
+</html>

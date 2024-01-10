@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labyrinthus</title>
+</head>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #212121;
+        /* Cor de fundo escura para representar o ambiente do labirinto */
+        color: #ffffff;
+        /* Cor do texto */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    h3 {
+        text-align: center;
+        color: #f0c419;
+        /* Cor do título */
+        margin-bottom: 20px;
+    }
+
+    button {
+        background-image: url('../dado.gif');
+        background-size: cover;
+        width: 70px;
+        height: 70px;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+        /* Efeito de escala ao passar o mouse para dar uma sensação mais interativa */
+    }
+
+    canvas {
+        border: solid;
+    }
+
+    #container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* Distribui o espaço entre os elementos */
+        text-align: center;
+        width: 80%; /* Define a largura do contêiner para 80% da largura da tela */
+    }
+
+    #myCanvas {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    #myButton {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    #playerImg {
+        display: none;
+    }
+</style>
+
+<body>
+
+    <div id="container">
+        <canvas id="myCanvas" width="600" height="800" style="border: solid;"></canvas>
+        <div>
+            <button id="myButton" onclick="gerarNumero()"></button>
+            <h3>Chaves:</h3>
+            <div id="itensContainer"></div>
+        </div>
+        <img id="playerImg" src="../img/player.png" style="display: none;">
+    </div>
+
+    <script src="../js/game.js"></script>
+</body>
+
+</html>
